@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Contract;
 import javax.annotation.Nonnull;
 
 @SuppressWarnings("unused")
-public interface AutoOpenable {
+public interface AutoOpenable extends Capability {
 
     /**
      * Checks whether the AutoOpenable will automatically open for registrants.

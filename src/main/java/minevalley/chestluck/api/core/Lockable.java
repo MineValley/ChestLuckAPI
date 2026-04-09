@@ -1,5 +1,6 @@
 package minevalley.chestluck.api.core;
 
+import minevalley.chestluck.api.core.capabilities.Capability;
 import minevalley.core.api.Registrant;
 import org.bukkit.Location;
 import org.jetbrains.annotations.Contract;
@@ -90,7 +91,7 @@ public interface Lockable {
      */
     @Nonnull
     @Contract(pure = true)
-    default <T> Optional<T> as(@Nonnull Class<T> capability) throws IllegalArgumentException {
+    default <T extends Capability> Optional<T> as(@Nonnull Class<T> capability) throws IllegalArgumentException {
         if (capability == null) throw new IllegalArgumentException("Capability class cannot be null");
         return capability.isInstance(this) ? Optional.of(capability.cast(this)) : Optional.empty();
     }
