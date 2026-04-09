@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Contract;
 import javax.annotation.Nonnull;
 
 @SuppressWarnings("unused")
-public interface AutoCloseable {
+public interface AutoCloseable extends Capability{
 
     /**
      * Checks whether the AutoCloseable should automatically close after it has been opened

@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Contract;
 import javax.annotation.Nonnull;
 
 @SuppressWarnings("unused")
-public interface ItemReceiver {
+public interface ItemReceiver extends Capability {
 
     /**
      * Checks whether the ItemReceiver can receive items or not.
