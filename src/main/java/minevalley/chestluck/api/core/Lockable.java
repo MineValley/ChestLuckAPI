@@ -2,7 +2,6 @@ package minevalley.chestluck.api.core;
 
 import minevalley.core.api.Registrant;
 import org.bukkit.block.Block;
-import org.bukkit.block.data.type.Chest;
 import org.jetbrains.annotations.Contract;
 
 import javax.annotation.Nonnull;
@@ -81,7 +80,7 @@ public interface Lockable<T extends Lockable<T>> {
      */
     @Nonnull
     @Contract(pure = true)
-    Chest getOwner();
+    Registrant getOwner();
 
     /**
      * Removes this lockable, releasing all locks and permissions.
