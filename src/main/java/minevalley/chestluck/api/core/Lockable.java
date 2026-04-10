@@ -1,7 +1,7 @@
 package minevalley.chestluck.api.core;
 
 import minevalley.core.api.Registrant;
-import org.bukkit.Location;
+import org.bukkit.block.Block;
 import org.bukkit.block.data.type.Chest;
 import org.jetbrains.annotations.Contract;
 
@@ -11,36 +11,36 @@ import javax.annotation.Nonnull;
 public interface Lockable<T extends Lockable<T>> {
 
     /**
-     * Checks if the specified location is currently locked.
+     * Checks if the specified block is currently locked.
      *
-     * @param location the location to check; must not be {@code null}
-     * @return {@code true} if the location is locked, {@code false} otherwise
-     * @throws IllegalArgumentException if the location is null
+     * @param block the block to check; must not be {@code null}
+     * @return {@code true} if the block is locked, {@code false} otherwise
+     * @throws IllegalArgumentException if the block is null
      */
     @Contract(pure = true)
-    boolean isLocked(@Nonnull Location location) throws IllegalArgumentException;
+    boolean isLocked(@Nonnull Block block) throws IllegalArgumentException;
 
     /**
-     * Locks the specified location.
+     * Locks the specified block.
      *
-     * @param location the location to lock; must not be {@code null}
+     * @param block the block to lock; must not be {@code null}
      * @return this
-     * @throws IllegalArgumentException if the location is null or cannot be locked
+     * @throws IllegalArgumentException if the block is null or cannot be locked
      */
     @Nonnull
     @Contract("_ -> this")
-    T lock(@Nonnull Location location) throws IllegalArgumentException;
+    T lock(@Nonnull Block block) throws IllegalArgumentException;
 
     /**
-     * Releases the lock on the specified location.
+     * Releases the lock on the specified block.
      *
-     * @param location the location to release; must not be {@code null}
+     * @param block the block to release; must not be {@code null}
      * @return this
-     * @throws IllegalArgumentException if the location is null or is not currently locked
+     * @throws IllegalArgumentException if the block is null or is not currently locked
      */
     @Nonnull
     @Contract("_ -> this")
-    T release(@Nonnull Location location) throws IllegalArgumentException;
+    T release(@Nonnull Block block) throws IllegalArgumentException;
 
     /**
      * Checks if the specified registrant has permission to access this lockable.
