@@ -76,6 +76,15 @@ public interface Lockable {
     Lockable revokePermission(@Nonnull Registrant registrant) throws IllegalArgumentException;
 
     /**
+     * Returns the owner registrant
+     *
+     * @return the owner registrant
+     */
+    @Nonnull
+    @Contract(pure = true)
+    Registrant getOwner();
+
+    /**
      * Removes this lockable, releasing all locks and permissions.
      */
     void remove();
