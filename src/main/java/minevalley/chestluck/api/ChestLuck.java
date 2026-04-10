@@ -22,7 +22,7 @@ public class ChestLuck {
      * @throws IllegalArgumentException if the owner is null, the location is null, the registrants are null or if a lockable already exists at the given location
      */
     @Nonnull
-    public static Lockable createLockable(@Nonnull Registrant owner, @Nonnull Location location, @Nonnull Registrant... registrants) throws IllegalArgumentException {
+    public static Lockable<? extends Lockable<?>> createLockable(@Nonnull Registrant owner, @Nonnull Location location, @Nonnull Registrant... registrants) throws IllegalArgumentException {
         return provider.createLockable(owner, location, registrants);
     }
 
@@ -34,7 +34,7 @@ public class ChestLuck {
      * @throws IllegalArgumentException if the location is null
      */
     @Nullable
-    public static Lockable getLockableAt(@Nonnull Location location) throws IllegalArgumentException {
+    public static Lockable<? extends Lockable<?>> getLockableAt(@Nonnull Location location) throws IllegalArgumentException {
         return provider.getLockableAt(location);
     }
 }

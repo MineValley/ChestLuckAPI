@@ -12,8 +12,8 @@ import javax.annotation.Nullable;
 public interface ChestLuckProvider {
 
     @Nonnull
-    Lockable createLockable(Registrant owner, Location location, Registrant... registrants) throws IllegalArgumentException;
+    Lockable<? extends Lockable<?>> createLockable(Registrant owner, Location location, Registrant... registrants) throws IllegalArgumentException;
 
     @Nullable
-    Lockable getLockableAt(Location location) throws IllegalArgumentException;
+    Lockable<? extends Lockable<?>> getLockableAt(Location location) throws IllegalArgumentException;
 }
