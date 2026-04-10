@@ -1,15 +1,14 @@
 package minevalley.chestluck.api.core;
 
-import minevalley.chestluck.api.core.capabilities.Capability;
 import minevalley.core.api.Registrant;
 import org.bukkit.Location;
+import org.bukkit.block.data.type.Chest;
 import org.jetbrains.annotations.Contract;
 
 import javax.annotation.Nonnull;
-import java.util.Optional;
 
 @SuppressWarnings("unused")
-public interface Lockable {
+public interface Lockable<T extends Lockable<T>> {
 
     /**
      * Checks if the specified location is currently locked.
@@ -30,7 +29,7 @@ public interface Lockable {
      */
     @Nonnull
     @Contract("_ -> this")
-    Lockable lock(@Nonnull Location location) throws IllegalArgumentException;
+    T lock(@Nonnull Location location) throws IllegalArgumentException;
 
     /**
      * Releases the lock on the specified location.
@@ -41,7 +40,7 @@ public interface Lockable {
      */
     @Nonnull
     @Contract("_ -> this")
-    Lockable release(@Nonnull Location location) throws IllegalArgumentException;
+    T release(@Nonnull Location location) throws IllegalArgumentException;
 
     /**
      * Checks if the specified registrant has permission to access this lockable.
@@ -62,7 +61,7 @@ public interface Lockable {
      */
     @Nonnull
     @Contract("_ -> this")
-    Lockable grantPermission(@Nonnull Registrant registrant) throws IllegalArgumentException;
+    T grantPermission(@Nonnull Registrant registrant) throws IllegalArgumentException;
 
     /**
      * Revokes permission from the specified registrant.
@@ -73,7 +72,7 @@ public interface Lockable {
      */
     @Nonnull
     @Contract("_ -> this")
-    Lockable revokePermission(@Nonnull Registrant registrant) throws IllegalArgumentException;
+    T revokePermission(@Nonnull Registrant registrant) throws IllegalArgumentException;
 
     /**
      * Returns the owner registrant
@@ -82,26 +81,10 @@ public interface Lockable {
      */
     @Nonnull
     @Contract(pure = true)
-    Registrant getOwner();
+    Chest getOwner();
 
     /**
      * Removes this lockable, releasing all locks and permissions.
      */
     void remove();
-
-    /**
-     * Generic capability accessor. Returns an Optional containing the requested capability
-     * if this instance implements it.
-     *
-     * @param capability the capability type to query for; must not be {@code null}
-     * @param <T>        the capability interface/type
-     * @return an Optional containing the capability instance if available, otherwise Optional.empty()
-     * @throws IllegalArgumentException if {@code capability} is {@code null}
-     */
-    @Nonnull
-    @Contract(pure = true)
-    default <T extends Capability> Optional<T> as(@Nonnull Class<T> capability) throws IllegalArgumentException {
-        if (capability == null) throw new IllegalArgumentException("Capability class cannot be null");
-        return capability.isInstance(this) ? Optional.of(capability.cast(this)) : Optional.empty();
-    }
 }
