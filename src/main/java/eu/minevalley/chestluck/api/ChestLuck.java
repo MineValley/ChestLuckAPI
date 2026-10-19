@@ -54,12 +54,12 @@ public class ChestLuck {
     }
 
     /**
-     * Logs the given entry. The entry is persisted asynchronously.
+     * Logs the given entries. The entries are persisted asynchronously.
      *
-     * @param entry the entry to log
-     * @throws IllegalArgumentException if the entry is null
+     * @param entries the entries to log
+     * @throws IllegalArgumentException if the entries are null
      */
-    public static void log(@Nonnull LogEntry entry) throws IllegalArgumentException {
-        provider.log(entry);
+    public static void log(@Nonnull LogEntry... entries) throws IllegalArgumentException {
+        provider.log(entries);
     }
 }

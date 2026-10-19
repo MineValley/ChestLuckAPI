@@ -24,5 +24,5 @@ public interface ChestLuckProvider {
     @Nonnull
     <T extends LogEntry> CompletableFuture<List<T>> getLogs(@Nonnull LogQuery<T> query);
 
-    void log(@Nonnull LogEntry entry);
+    void log(@Nonnull LogEntry... entries);
 }
