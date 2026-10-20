@@ -1,5 +1,6 @@
 package eu.minevalley.chestluck.api.core.logging;
 
+import eu.minevalley.chestluck.api.ChestLuck;
 import eu.minevalley.proxima.api.user.User;
 import lombok.Getter;
 import org.bukkit.Location;
@@ -8,6 +9,8 @@ import org.jetbrains.annotations.Contract;
 
 import javax.annotation.Nonnull;
 import java.time.Instant;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @SuppressWarnings("unused")
 @Getter
@@ -94,5 +97,16 @@ public final class LogQuery<T extends LogEntry> {
     public LogQuery<T> limit(int limit) {
         this.limit = limit;
         return this;
+    }
+
+    /**
+     * Gets all log entries matching this query, newest first.
+     *
+     * @return a future completing with the matching log entries
+     */
+    @Nonnull
+    @Contract(pure = true)
+    public CompletableFuture<List<T>> execute() {
+        return ChestLuck.service().getLogs(this);
     }
 }
