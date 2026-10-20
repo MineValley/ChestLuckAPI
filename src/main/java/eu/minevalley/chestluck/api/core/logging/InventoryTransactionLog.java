@@ -11,5 +11,5 @@ public record InventoryTransactionLog(
         @Nonnull Block block, @Nonnull User user, @Nonnull String description, @Nonnull Instant timestamp,
         @Nonnull Direction direction) implements LogEntry {
 
-    public enum Direction {DEPOSIT, WITHDRAW}
+    public enum Direction {GIVE, TAKE}
 }
