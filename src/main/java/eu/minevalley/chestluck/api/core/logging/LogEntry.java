@@ -8,7 +8,16 @@ import javax.annotation.Nonnull;
 import java.time.Instant;
 
 @SuppressWarnings("unused")
-public interface LogEntry {
+public sealed interface LogEntry permits BlockActionLog, InteractionLog, InventoryTransactionLog {
+
+    /**
+     * Gets the timestamp of this log entry
+     *
+     * @return timestamp of this log entry
+     */
+    @Nonnull
+    @Contract(pure = true)
+    Instant timestamp();
 
     /**
      * Gets the block associated with this log entry
@@ -36,13 +45,4 @@ public interface LogEntry {
     @Nonnull
     @Contract(pure = true)
     String description();
-
-    /**
-     * Gets the timestamp of this log entry
-     *
-     * @return timestamp of this log entry
-     */
-    @Nonnull
-    @Contract(pure = true)
-    Instant timestamp();
 }
