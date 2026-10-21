@@ -3,7 +3,6 @@ package eu.minevalley.chestluck.api.core.logging;
 import eu.minevalley.chestluck.api.ChestLuck;
 import eu.minevalley.proxima.api.user.User;
 import lombok.Getter;
-import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.jetbrains.annotations.Contract;
 
@@ -18,7 +17,7 @@ public final class LogQuery<T extends LogEntry> {
 
     private final Class<T> type;
     private User user;
-    private Location location;
+    private Block block;
     private Instant from, to;
     private int limit = 100;
 
@@ -56,7 +55,7 @@ public final class LogQuery<T extends LogEntry> {
     @Nonnull
     @Contract("_ -> this")
     public LogQuery<T> at(@Nonnull Block block) {
-        this.location = block.getLocation();
+        this.block = block;
         return this;
     }
 
